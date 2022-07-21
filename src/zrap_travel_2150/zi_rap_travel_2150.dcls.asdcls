@@ -1,0 +1,16 @@
+@EndUserText.label: 'Access Control for ZI_RAP_Travel_2150'
+@MappingRole: true
+define role ZI_RAP_Travel_2150 {
+    grant
+        select
+            on
+               ZI_RAP_TRAVEL_2150
+                  where 
+                   ( TravelStatus )                       
+                      = aspect pfcg_auth ( ZOSTAT2150, ZOSTAT2150,  actvt = '03') 
+                        and
+                        CurrencyCode = 'EUR'
+                  or
+                    true;  //Workaround because Auth Object is not assigned to my user
+
+}
